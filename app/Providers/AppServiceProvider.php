@@ -17,11 +17,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-//        view()->composer('*', function($view) {
-//        	$view->with('channels', Channel::all());
-//        });
+        view()->composer('*', function($view) {
+        	$view->with('channels', Channel::all());
+        });
 
-	    view()->share('channels', Channel::all());
+//	    view()->share('channels', Channel::all());
     }
 
     /**
