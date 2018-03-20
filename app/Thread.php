@@ -2,6 +2,7 @@
 
 namespace App;
 
+use function foo\func;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -26,7 +27,10 @@ class Thread extends Model
         });
 
         static::deleting(function ($thread) {
-            $thread->replies()->delete();
+//            $thread->replies->each(function ($reply) {
+//                $reply->delete();
+//            });
+            $thread->replies->each->delete();
         });
     }
 
