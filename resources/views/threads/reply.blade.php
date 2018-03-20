@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <div class="level">
             <h5 class="flex">
-                <a href="#">
+                <a href="{{ route('profile', $reply->owner) }}">
                     <b>
                         {{ $reply->owner->name }}
                     </b>

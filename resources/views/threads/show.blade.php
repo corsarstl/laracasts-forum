@@ -6,7 +6,7 @@
             <div class="col-8 col-sm-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="#">
+                        <a href="{{ route('profile', $thread->creator->name) }}">
                             {{ $thread->creator->name }}
                         </a>
 
@@ -52,7 +52,7 @@
 
                     <div class="panel-body">
                         This thread was published <b>{{ $thread->created_at->diffForHumans() }}</b> by
-                        <a href="#">{{ $thread->creator->name }}</a>, and currently has
+                        <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>, and currently has
                         {{ $thread->replies_count }} {{ str_plural('comment', $thread->replies_count) }}.
                     </div>
                 </div>
