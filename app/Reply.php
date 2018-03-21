@@ -41,4 +41,13 @@ class Reply extends Model
     {
         return $this->thread->path() . "#reply-{$this->id}";
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($reply) {
+            $reply->favorites->each->delete();
+        });
+    }
 }

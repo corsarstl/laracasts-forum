@@ -10,7 +10,7 @@ class ParticipateInForumTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function unauthenticated_user_may_not_add_replies()
+    public function an_unauthenticated_user_may_not_add_replies()
     {
         $this->withExceptionHandling()
             ->post('/threads/some-channel/1/replies', [])
@@ -41,5 +41,32 @@ class ParticipateInForumTest extends TestCase
 
         $this->post($thread->path().'/replies', $reply->toArray())
             ->assertSessionHasErrors('body');
+    }
+
+    /** @test */
+    public function unauthorized_users_cannot_delete_replies()
+    {
+        $this->withExceptionHandling();
+
+        $reply = create('App\Reply');
+
+        $this->delete("/replies/{$reply->id}")
+            ->assertRedirect('login');
+
+        $this->singIn()
+            ->delete("/replies/{$reply->id}")
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    public function authorized_users_can_delete_replies()
+    {
+        $this->singIn();
+
+        $reply = create('App\Reply', ['user_id' => auth()->id()]);
+
+        $this->delete("/replies/{$reply->id}")->assertStatus(302);
+
+        $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
     }
 }
