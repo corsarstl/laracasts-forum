@@ -22,9 +22,11 @@ class Thread extends Model
     {
         parent::boot();
 
-        static::addGlobalScope('replyCount', function ($builder) {
-            $builder->withCount('replies');
-        });
+//        now see 'replies_count' in 'threads'
+
+//        static::addGlobalScope('replyCount', function ($builder) {
+//            $builder->withCount('replies');
+//        });
 
         static::deleting(function ($thread) {
 //            $thread->replies->each(function ($reply) {

@@ -54,7 +54,7 @@
 
         computed: {
             ago() {
-                return moment(this.data.created_at).fromNow() + '...';
+                return moment(this.data.created_at + 'Z').fromNow() + '...';
             },
 
             signedIn() {

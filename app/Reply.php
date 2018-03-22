@@ -48,8 +48,13 @@ class Reply extends Model
     {
         parent::boot();
 
-        static::deleting(function ($reply) {
+        static::created(function ($reply) {
+            $reply->thread->increment('replies_count');
+        });
+
+        static::deleted(function ($reply) {
             $reply->favorites->each->delete();
+            $reply->thread->decrement('replies_count');
         });
     }
 }
