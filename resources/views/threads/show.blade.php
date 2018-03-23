@@ -36,9 +36,20 @@
                     <div class="panel panel-default">
 
                         <div class="panel-body">
-                            This thread was published <b>{{ $thread->created_at->diffForHumans() }}</b> by
-                            <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>, and currently has
-                            <span v-text="repliesCount"></span> {{ str_plural('comment', $thread->replies_count) }}.
+                            <p>
+                                This thread was published
+                                <b>{{ $thread->created_at->diffForHumans() }}</b>
+                                by
+                                <a href="{{ route('profile', $thread->creator->name) }}">
+                                    {{ $thread->creator->name }}
+                                </a>,
+                                and currently has
+                                <span v-text="repliesCount"></span> {{ str_plural('comment', $thread->replies_count) }}.
+                            </p>
+
+                            <p>
+                                <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
-    public function a_thread_can_make_a_string_path()
+    public function it_can_make_a_string_path()
     {
         $thread = create('App\Thread');
 
@@ -29,19 +29,19 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
-    public function a_thread_has_a_creator()
+    public function it_has_a_creator()
     {
         $this->assertInstanceOf('App\User', $this->thread->creator);
     }
 
     /** @test */
-    public function a_thread_has_replies()
+    public function it_has_replies()
     {
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->thread->replies);
     }
 
     /** @test */
-    public function a_thread_can_add_a_reply()
+    public function it_can_add_a_reply()
     {
         $this->thread->addReply([
             'body' => 'Foobar',
@@ -52,7 +52,7 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
-    public function a_thread_belongs_to_a_channel()
+    public function it_belongs_to_a_channel()
     {
         $thread = create('App\Thread');
 
@@ -60,7 +60,7 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
-    public function a_thread_can_be_subscribed_to()
+    public function it_can_be_subscribed_to()
     {
         $thread = create('App\Thread');
 
@@ -73,7 +73,7 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
-    public function a_thread_can_be_unsubscribed_from()
+    public function it_can_be_unsubscribed_from()
     {
         $thread = create('App\Thread');
 
@@ -82,5 +82,19 @@ class ThreadTest extends TestCase
         $thread->unsubscribe($userId);
 
         $this->assertCount(0, $thread->subscriptions);
+    }
+    
+    /** @test */
+    public function it_knows_if_authenticated_user_is_subscribed_to_it()
+    {
+        $thread = create('App\Thread');
+
+        $this->singIn();
+
+        $this->assertFalse($thread->isSubscribedTo);
+
+        $thread->subscribe();
+
+        $this->assertTrue($thread->isSubscribedTo);
     }
 }
