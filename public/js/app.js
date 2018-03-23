@@ -61242,7 +61242,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         classes: function classes() {
             return ['btn', this.active ? 'btn-primary' : 'btn-default'];
         },
-        status: function status() {
+        isSubscribed: function isSubscribed() {
             return this.active ? 'Unsubscribe' : 'Subscribe';
         }
     },
@@ -61267,7 +61267,7 @@ var render = function() {
   return _c("button", {
     staticClass: "btn",
     class: _vm.classes,
-    domProps: { textContent: _vm._s(_vm.status) },
+    domProps: { textContent: _vm._s(_vm.isSubscribed) },
     on: { click: _vm.subscribe }
   })
 }

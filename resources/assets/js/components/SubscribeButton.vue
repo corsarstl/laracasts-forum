@@ -1,7 +1,7 @@
 <template>
     <button class="btn"
             :class="classes"
-            @click="subscribe" v-text="status"></button>
+            @click="subscribe" v-text="isSubscribed"></button>
 </template>
 
 <script>
@@ -13,7 +13,7 @@
                 return ['btn', this.active ? 'btn-primary' : 'btn-default'];
             },
 
-            status() {
+            isSubscribed() {
                 return this.active ? 'Unsubscribe' : 'Subscribe';
             }
         },
