@@ -57,6 +57,13 @@ class Thread extends Model
     {
         $reply = $this->replies()->create($reply);
 
+        $this->notifySubscribers($reply);
+
+        return $reply;
+    }
+
+    public function notifySubscribers($reply)
+    {
 //        VARIANT 1
 
         $this->subscriptions
@@ -76,8 +83,6 @@ class Thread extends Model
 //                $subscription->user->notify(new ThreadWasUpdated($this, $reply));
 //            }
 //        }
-
-        return $reply;
     }
 
     public function scopeFilter($query, $filters)
