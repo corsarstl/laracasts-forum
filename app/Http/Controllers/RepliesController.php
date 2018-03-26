@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Reply;
-use App\Inspections\Spam;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -25,13 +24,12 @@ class RepliesController extends Controller
     /**
      * @param $channelId
      * @param Thread $thread
-     * @param Spam $spam
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store($channelId, Thread $thread)
     {
         try {
-            $this->validateReply();
+            $this->validate(request(), ['body' => 'required|spamfree']);
 
             $reply = $thread->addReply([
                 'body' => request('body'),
@@ -55,7 +53,7 @@ class RepliesController extends Controller
         $this->authorize('update', $reply);
 
         try {
-            $this->validateReply();
+            $this->validate(request(), ['body' => 'required|spamfree']);
 
             $reply->update(['body' => request('body')]);
         } catch (\Exception $e) {
@@ -76,12 +74,5 @@ class RepliesController extends Controller
         }
 
         return back();
-    }
-
-    protected function validateReply()
-    {
-        $this->validate(request(), ['body' => 'required']);
-
-        resolve(Spam::class)->detect(request('body'));
     }
 }
