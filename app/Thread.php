@@ -15,11 +15,6 @@ class Thread extends Model
 
     protected $appends = ['isSubscribedTo'];
 
-    public function path()
-    {
-        return "/threads/{$this->channel->slug}/{$this->id}";
-    }
-
     protected static function boot()
     {
         parent::boot();
@@ -36,6 +31,11 @@ class Thread extends Model
 //            });
             $thread->replies->each->delete();
         });
+    }
+
+    public function path()
+    {
+        return "/threads/{$this->channel->slug}/{$this->id}";
     }
 
     public function replies()
@@ -120,5 +120,13 @@ class Thread extends Model
         return $this->subscriptions()
             ->where('user_id', auth()->id())
             ->exists();
+    }
+
+    public function hasUpdatesFor($user)
+    {
+        $key = $user->visitedThreadCacheKey($this);
+//        $key = sprintf("users.%s.visits.%s", auth()->id(), $this->id);
+
+        return $this->updated_at > cache($key);
     }
 }
