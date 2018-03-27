@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Reply;
-use App\Thread;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\CreatePostRequest;
+use App\{Reply, Thread};
 
 class RepliesController extends Controller
 {
@@ -25,30 +23,15 @@ class RepliesController extends Controller
     /**
      * @param $channelId
      * @param Thread $thread
+     * @param CreatePostRequest $form
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store($channelId, Thread $thread)
+    public function store($channelId, Thread $thread, CreatePostRequest $form)
     {
-        if(Gate::denies('create', new Reply)) {
-            return response(
-                'You are posting too frequenty. Please take a break :)', 422
-            );
-        }
-
-        try {
-            $this->validate(request(), ['body' => 'required|spamfree']);
-
-            $reply = $thread->addReply([
-                'body' => request('body'),
-                'user_id' => auth()->id()
-            ]);
-        } catch (\Exception $e) {
-            return response(
-                'Sorry, your reply could not be saved at this time', 422
-            );
-        }
-
-        return $reply->load('owner');
+        return $thread->addReply([
+            'body' => request('body'),
+            'user_id' => auth()->id()
+        ])->load('owner');
     }
 
     public function update(Reply $reply)
