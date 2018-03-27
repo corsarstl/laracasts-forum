@@ -32,3 +32,4 @@ Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsCon
 Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')->middleware('auth');
 
 Route::get('api/users', 'Api\UsersController@index');
+Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth');
