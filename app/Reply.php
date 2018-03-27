@@ -25,6 +25,20 @@ class Reply extends Model
 
     protected $appends = ['favoritesCount', 'isFavorited'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($reply) {
+            $reply->thread->increment('replies_count');
+        });
+
+        static::deleted(function ($reply) {
+            $reply->favorites->each->delete();
+            $reply->thread->decrement('replies_count');
+        });
+    }
+
     /**
      * A reply has an owner.
      *
@@ -47,7 +61,7 @@ class Reply extends Model
 
     public function mentionedUsers()
     {
-        preg_match_all('/\@([^\s\.]+)/', $this->body, $matches);
+        preg_match_all('/@([\w\-]+)/', $this->body, $matches);
 
         return $matches[1];
     }
@@ -57,17 +71,12 @@ class Reply extends Model
         return $this->thread->path() . "#reply-{$this->id}";
     }
 
-    protected static function boot()
+    public function setBodyAttribute($body)
     {
-        parent::boot();
-
-        static::created(function ($reply) {
-            $reply->thread->increment('replies_count');
-        });
-
-        static::deleted(function ($reply) {
-            $reply->favorites->each->delete();
-            $reply->thread->decrement('replies_count');
-        });
+        $this->attributes['body'] = preg_replace(
+            '/@([\w\-]+)/',
+            '<a href="/profiles/$1">$0</a>',
+            $body
+        );
     }
 }
