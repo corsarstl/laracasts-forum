@@ -61,8 +61,8 @@ class User extends Authenticatable
         return sprintf("users.%s.visits.%s", $this->id, $thread->id);
     }
 
-    public function avatar()
+    public function getAvatarPathAttribute($avatar)
     {
-        return $this->avatar_path ? '/storage/' . $this->avatar_path : '/storage/avatars/default.jpeg';
+        return $avatar ? "/storage/${avatar}" : '/storage/avatars/default.jpeg';
     }
 }
