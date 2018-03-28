@@ -59946,6 +59946,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['dataSet'],
@@ -59994,75 +59996,77 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.shouldPaginate
-    ? _c("ul", { staticClass: "pagination" }, [
-        _c(
-          "li",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.prevUrl,
-                expression: "prevUrl"
-              }
-            ]
-          },
-          [
-            _c(
-              "a",
-              {
-                attrs: { href: "#", "aria-label": "Previous", rel: "prev" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.page--
-                  }
+  return _c("div", { staticClass: "text-center" }, [
+    _vm.shouldPaginate
+      ? _c("ul", { staticClass: "pagination" }, [
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.prevUrl,
+                  expression: "prevUrl"
                 }
-              },
-              [
-                _c("span", { attrs: { "aria-hidden": "true" } }, [
-                  _vm._v("« Previous")
-                ])
               ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.nextUrl,
-                expression: "nextUrl"
-              }
-            ]
-          },
-          [
-            _c(
-              "a",
-              {
-                attrs: { href: "#", "aria-label": "Next", rel: "next" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.page++
+            },
+            [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#", "aria-label": "Previous", rel: "prev" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.page--
+                    }
                   }
+                },
+                [
+                  _c("span", { attrs: { "aria-hidden": "true" } }, [
+                    _vm._v("« Previous")
+                  ])
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.nextUrl,
+                  expression: "nextUrl"
                 }
-              },
-              [
-                _c("span", { attrs: { "aria-hidden": "true" } }, [
-                  _vm._v("Next »")
-                ])
               ]
-            )
-          ]
-        )
-      ])
-    : _vm._e()
+            },
+            [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#", "aria-label": "Next", rel: "next" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.page++
+                    }
+                  }
+                },
+                [
+                  _c("span", { attrs: { "aria-hidden": "true" } }, [
+                    _vm._v("Next »")
+                  ])
+                ]
+              )
+            ]
+          )
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

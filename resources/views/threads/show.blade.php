@@ -12,10 +12,16 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="level">
-                            <span class="flex">
-                                <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>
-                                posted: <b>{{ $thread->title }}</b>
-                            </span>
+
+                                <img src="{{ $thread->creator->avatar() }}"
+                                     alt="{{ $thread->creator->name }}"
+                                     width="50" height="50"
+                                     class="mr-1">
+                                
+                                <span class="flex">
+                                    <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>
+                                    posted: <b>{{ $thread->title }}</b>
+                                </span>
 
                                 @can('update', $thread)
                                     <form action="{{ $thread->path() }}" method="POST">

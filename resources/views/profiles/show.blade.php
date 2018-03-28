@@ -7,8 +7,18 @@
                 <div class="page-header">
                     <h1>
                         {{ $profileUser->name }}
-                        {{--<small>{{ $profileUser->created_at->diffForHumans() }}</small>--}}
                     </h1>
+
+                    @can('update', $profileUser)
+                        <form method="POST" action="{{ route('avatar', $profileUser) }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <input type="file" name="avatar" required>
+
+                            <button type="submit" class="btn btn-primary">Add avatar</button>
+                        </form>
+                    @endcan
+
+                    <img src="{{ $profileUser->avatar() }}" alt="user avatar" width="100" height="100">
                 </div>
 
                 @forelse ($activities as $date => $activity)
@@ -23,7 +33,6 @@
                     <p>There is no activity for this user yet.</p>
                 @endforelse
 
-                {{--{{ $threads->links() }}--}}
             </div>
         </div>
     </div>
