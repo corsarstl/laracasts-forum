@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Channel;
+use App\{
+    Channel, Thread, Trending
+};
 use App\Filters\ThreadFilters;
-use App\Thread;
-use App\Trending;
 use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
@@ -76,7 +76,9 @@ class ThreadsController extends Controller
             auth()->user()->read($thread);
         };
 
-        $thread->visits()->record();
+//        $thread->visits()->record();
+
+        $thread->increment('visits');
 
         $trending->push($thread);
 
