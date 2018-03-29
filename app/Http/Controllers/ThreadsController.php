@@ -37,6 +37,11 @@ class ThreadsController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('threads.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
