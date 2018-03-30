@@ -14,7 +14,7 @@ class NotificationsTest extends TestCase
     {
         parent::setUp();
 
-        $this->singIn();
+        $this->signIn();
     }
     
     /** @test */

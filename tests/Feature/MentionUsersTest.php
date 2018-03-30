@@ -14,7 +14,7 @@ class MentionUsersTest extends TestCase
     {
         $corsarstl = create('App\User', ['name' => 'corsarstl']);
 
-        $this->singIn($corsarstl);
+        $this->signIn($corsarstl);
 
         $corsarstl2 = create('App\User', ['name' => 'corsarstl2']);
 

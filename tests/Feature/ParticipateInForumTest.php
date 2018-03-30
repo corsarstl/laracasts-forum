@@ -20,7 +20,7 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function an_authenticated_user_may_participate_in_forum_threads()
     {
-        $this->singIn();
+        $this->signIn();
 
         $thread = create('App\Thread');
 
@@ -34,7 +34,7 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function a_reply_requires_a_body()
     {
-        $this->withExceptionHandling()->singIn();
+        $this->withExceptionHandling()->signIn();
 
         $thread = create('App\Thread');
         $reply = make('App\Reply', ['body' => null]);
@@ -53,7 +53,7 @@ class ParticipateInForumTest extends TestCase
         $this->delete("/replies/{$reply->id}")
             ->assertRedirect('login');
 
-        $this->singIn()
+        $this->signIn()
             ->delete("/replies/{$reply->id}")
             ->assertStatus(403);
     }
@@ -61,7 +61,7 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function authorized_users_can_delete_replies()
     {
-        $this->singIn();
+        $this->signIn();
 
         $reply = create('App\Reply', ['user_id' => auth()->id()]);
 
@@ -81,7 +81,7 @@ class ParticipateInForumTest extends TestCase
         $this->patch("/replies/{$reply->id}")
             ->assertRedirect('login');
 
-        $this->singIn()
+        $this->signIn()
             ->patch("/replies/{$reply->id}")
             ->assertStatus(403);
     }
@@ -89,7 +89,7 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function authorized_users_can_update_replies()
     {
-        $this->singIn();
+        $this->signIn();
 
         $reply = create('App\Reply', ['user_id' => auth()->id()]);
 
@@ -104,7 +104,7 @@ class ParticipateInForumTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $this->singIn();
+        $this->signIn();
 
         $thread = create('App\Thread');
 
@@ -121,7 +121,7 @@ class ParticipateInForumTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $this->singIn();
+        $this->signIn();
 
         $thread = create('App\Thread');
 

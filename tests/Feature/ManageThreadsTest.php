@@ -28,7 +28,7 @@ class ManageThreadsTest extends TestCase
     {
         $user = factory('App\User')->states('unconfirmed')->create();
 
-        $this->singIn($user);
+        $this->signIn($user);
 
         $thread = make('App\Thread');
 
@@ -40,7 +40,7 @@ class ManageThreadsTest extends TestCase
     /** @test */
     public function a_user_can_create_new_forum_threads()
     {
-        $this->singIn();
+        $this->signIn();
 
         $thread = make('App\Thread');
 
@@ -80,7 +80,7 @@ class ManageThreadsTest extends TestCase
     /** @test */
     public function a_thread_requires_a_unique_slug()
     {
-        $this->singIn();
+        $this->signIn();
 
         $thread = create('App\Thread', ['title' => 'Foo Title']);
 
@@ -94,7 +94,7 @@ class ManageThreadsTest extends TestCase
     /** @test */
     function a_thread_with_a_title_that_ends_in_a_number_should_generate_the_proper_slug()
     {
-        $this->singIn();
+        $this->signIn();
 
         $thread = create('App\Thread', ['title' => 'Some Title 24']);
 
@@ -112,7 +112,7 @@ class ManageThreadsTest extends TestCase
 
         $this->delete($thread->path())->assertRedirect('/login');
 
-        $this->singIn();
+        $this->signIn();
 
         $this->delete($thread->path())->assertStatus(403);
     }
@@ -120,7 +120,7 @@ class ManageThreadsTest extends TestCase
     /** @test */
     public function authorised_users_can_delete_threads()
     {
-        $this->singIn();
+        $this->signIn();
 
         $thread = create('App\Thread', ['user_id' => auth()->id()]);
         $reply = create('App\Reply', ['thread_id' => $thread->id]);
@@ -137,7 +137,7 @@ class ManageThreadsTest extends TestCase
 
     public function publishThread($overrides = [])
     {
-        $this->withExceptionHandling()->singIn();
+        $this->withExceptionHandling()->signIn();
 
         $thread = make('App\Thread', $overrides);
 

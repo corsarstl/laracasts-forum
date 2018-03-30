@@ -20,7 +20,7 @@ class FavoritesTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_favorite_any_reply()
     {
-        $this->singIn();
+        $this->signIn();
 
         $reply = create('App\Reply');
 
@@ -32,7 +32,7 @@ class FavoritesTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_unfavorite_a_reply()
     {
-        $this->singIn();
+        $this->signIn();
 
         $reply = create('App\Reply');
 
@@ -46,7 +46,7 @@ class FavoritesTest extends TestCase
     /** @test */
     public function an_authenticated_user_may_only_favorite_a_reply_once()
     {
-        $this->singIn();
+        $this->signIn();
 
         $reply = create('App\Reply');
 

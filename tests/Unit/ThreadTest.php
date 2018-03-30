@@ -58,7 +58,7 @@ class ThreadTest extends TestCase
     {
         Notification::fake();
 
-        $this->singIn()
+        $this->signIn()
             ->thread
             ->subscribe()
             ->addReply([
@@ -107,7 +107,7 @@ class ThreadTest extends TestCase
     {
         $thread = create('App\Thread');
 
-        $this->singIn();
+        $this->signIn();
 
         $this->assertFalse($thread->isSubscribedTo);
 
@@ -119,7 +119,7 @@ class ThreadTest extends TestCase
     /** @test */
     public function it_can_check_if_the_authenticated_user_has_read_all_replies()
     {
-        $this->singIn();
+        $this->signIn();
 
         $thread = create('App\Thread');
 

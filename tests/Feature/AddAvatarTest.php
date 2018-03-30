@@ -23,7 +23,7 @@ class AddAvatarTest extends TestCase
     /** @test */
     public function a_valid_avatar_must_be_provided()
     {
-        $this->withExceptionHandling()->singIn();
+        $this->withExceptionHandling()->signIn();
 
         $this->json('POST', 'api/users/'. auth()->id() .'/avatar', [
             'avatar' => 'not-an-image'
@@ -34,7 +34,7 @@ class AddAvatarTest extends TestCase
     /** @test */
     public function a_user_may_add_an_avatar_to_their_profile()
     {
-        $this->singIn();
+        $this->signIn();
 
         Storage::fake('public');
 
