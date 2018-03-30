@@ -5,6 +5,37 @@ namespace App;
 use App\Events\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Thread
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $channel_id
+ * @property int $replies_count
+ * @property int $visits
+ * @property string $title
+ * @property string $body
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Activity[] $activity
+ * @property-read \App\Channel $channel
+ * @property-read \App\User $creator
+ * @property-read mixed $is_subscribed_to
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Reply[] $replies
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ThreadSubscription[] $subscriptions
+ * @property mixed slug
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread filter($filters)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereChannelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereRepliesCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereVisits($value)
+ * @mixin \Eloquent
+ */
 class Thread extends Model
 {
     use RecordsActivity;
@@ -35,7 +66,7 @@ class Thread extends Model
 
     public function path()
     {
-        return "/threads/{$this->channel->slug}/{$this->id}";
+        return "/threads/{$this->channel->slug}/{$this->slug}";
     }
 
     public function replies()
@@ -99,7 +130,7 @@ class Thread extends Model
             ->exists();
     }
 
-    public function hasUpdatesFor($user)
+    public function hasUpdatesFor(User $user)
     {
         $key = $user->visitedThreadCacheKey($this);
 //        $key = sprintf("users.%s.visits.%s", auth()->id(), $this->id);
@@ -107,10 +138,13 @@ class Thread extends Model
         return $this->updated_at > cache($key);
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 //    public function visits()
 //    {
 //        return new Visits($this);
 //    }
-
-
 }

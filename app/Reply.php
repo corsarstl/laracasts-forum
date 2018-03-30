@@ -5,6 +5,29 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Reply
+ *
+ * @property int $id
+ * @property int $thread_id
+ * @property int $user_id
+ * @property string $body
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Activity[] $activity
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Favorite[] $favorites
+ * @property-read int $favorites_count
+ * @property-read mixed $is_favorited
+ * @property-read \App\User $owner
+ * @property-read \App\Thread $thread
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereThreadId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Reply extends Model
 {
     use Favoritable, RecordsActivity;
