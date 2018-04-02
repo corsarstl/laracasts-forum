@@ -58,6 +58,10 @@ class Reply extends Model
         });
 
         static::deleted(function ($reply) {
+//            if ($reply->isBest()) {
+//                $reply->thread->update(['best_reply_id' => null ]);
+//            }
+
             $reply->favorites->each->delete();
             $reply->thread->decrement('replies_count');
         });
