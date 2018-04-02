@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ThreadSubscription[] $subscriptions
  * @property mixed slug
  * @property int best_reply_id
+ * @property mixed locked
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread filter($filters)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereBody($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereChannelId($value)
@@ -162,6 +163,14 @@ class Thread extends Model
         $this->best_reply_id = $reply->id;
 
         $this->save();
+    }
+
+    /**
+     * @return $this|void
+     */
+    public function lock()
+    {
+        $this->update(['locked' => true]);
     }
 //    public function visits()
 //    {
