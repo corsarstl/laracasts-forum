@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $body
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property bool $is_best
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Activity[] $activity
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Favorite[] $favorites
  * @property-read int $favorites_count
@@ -46,7 +47,7 @@ class Reply extends Model
      */
     protected $with = ['owner', 'favorites'];
 
-    protected $appends = ['favoritesCount', 'isFavorited'];
+    protected $appends = ['favoritesCount', 'isFavorited', 'isBest'];
 
     protected static function boot()
     {
@@ -106,5 +107,10 @@ class Reply extends Model
     public function isBest()
     {
         return $this->thread->best_reply_id == $this->id;
+    }
+
+    public function getIsBestAttribute()
+    {
+        return $this->isBest();
     }
 }
