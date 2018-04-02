@@ -22,6 +22,12 @@ $factory->state(App\User::class, 'unconfirmed', function () {
     ];
 });
 
+$factory->state(App\User::class, 'admin', function () {
+    return [
+        'name' => 'corsarstl'
+    ];
+});
+
 $factory->define(App\Thread::class, function (Faker\Generator $faker) {
     $title = $faker->sentence;
 
