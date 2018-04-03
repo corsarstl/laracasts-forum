@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-04-03 08:56:20.
+    * Generated on 2018-04-03 13:53:23.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -43,6 +43,7 @@ namespace PHPSTORM_META {
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
         'GrahamCampbell\Exceptions\Filters\VerboseFilter' => \GrahamCampbell\Exceptions\Filters\VerboseFilter::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.ide-helper.meta' => \Barryvdh\LaravelIdeHelper\Console\MetaCommand::class,
@@ -180,6 +181,7 @@ namespace PHPSTORM_META {
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
         'GrahamCampbell\Exceptions\Filters\VerboseFilter' => \GrahamCampbell\Exceptions\Filters\VerboseFilter::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.ide-helper.meta' => \Barryvdh\LaravelIdeHelper\Console\MetaCommand::class,
@@ -317,6 +319,7 @@ namespace PHPSTORM_META {
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
         'GrahamCampbell\Exceptions\Filters\VerboseFilter' => \GrahamCampbell\Exceptions\Filters\VerboseFilter::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.ide-helper.meta' => \Barryvdh\LaravelIdeHelper\Console\MetaCommand::class,
@@ -454,6 +457,7 @@ namespace PHPSTORM_META {
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
         'GrahamCampbell\Exceptions\Filters\VerboseFilter' => \GrahamCampbell\Exceptions\Filters\VerboseFilter::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.ide-helper.meta' => \Barryvdh\LaravelIdeHelper\Console\MetaCommand::class,
@@ -591,6 +595,7 @@ namespace PHPSTORM_META {
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
         'GrahamCampbell\Exceptions\Filters\VerboseFilter' => \GrahamCampbell\Exceptions\Filters\VerboseFilter::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.ide-helper.meta' => \Barryvdh\LaravelIdeHelper\Console\MetaCommand::class,
@@ -728,6 +733,7 @@ namespace PHPSTORM_META {
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
         'GrahamCampbell\Exceptions\Filters\VerboseFilter' => \GrahamCampbell\Exceptions\Filters\VerboseFilter::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.ide-helper.meta' => \Barryvdh\LaravelIdeHelper\Console\MetaCommand::class,
@@ -865,6 +871,7 @@ namespace PHPSTORM_META {
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
         'GrahamCampbell\Exceptions\Filters\VerboseFilter' => \GrahamCampbell\Exceptions\Filters\VerboseFilter::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.ide-helper.meta' => \Barryvdh\LaravelIdeHelper\Console\MetaCommand::class,
