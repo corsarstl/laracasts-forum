@@ -22,7 +22,6 @@ class ManageThreadsTest extends TestCase
                 $m->shouldReceive('passes')->andReturn(true);
             });
         });
-
     }
 
     /** @test */
@@ -140,7 +139,7 @@ class ManageThreadsTest extends TestCase
 
         $this->delete($thread->path())->assertStatus(403);
     }
-    
+
     /** @test */
     public function authorised_users_can_delete_threads()
     {
