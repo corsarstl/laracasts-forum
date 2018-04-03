@@ -17,6 +17,7 @@ Route::post('threads', 'ThreadsController@store')->middleware('must-be-confirmed
 Route::get('threads/{channel}', 'ThreadsController@index');
 
 Route::post('locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store')->middleware('admin');
+Route::delete('locked-threads/{thread}', 'LockedThreadsController@destroy')->name('locked-threads.destroy')->middleware('admin');
 
 Route::post('replies/{reply}/best', 'BestRepliesController@store')->name('best-replies.store');
 
