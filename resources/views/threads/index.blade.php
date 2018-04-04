@@ -4,11 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                @include('threads.list')
+                @include ('threads.list')
 
-                <div class="text-center">
-                    {{ $threads->render() }}
-                </div>
+                {{ $threads->render() }}
             </div>
 
             <div class="col-md-4">
@@ -24,13 +22,13 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="bnt btn-default" type="submit">Search</button>
+                                <button class="btn btn-default" type="submit">Search</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                @if(count($trending))
+                @if (count($trending))
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Trending Threads
@@ -38,7 +36,7 @@
 
                         <div class="panel-body">
                             <ul class="list-group">
-                                @foreach($trending as $thread)
+                                @foreach ($trending as $thread)
                                     <li class="list-group-item">
                                         <a href="{{ url($thread->path) }}">
                                             {{ $thread->title }}
