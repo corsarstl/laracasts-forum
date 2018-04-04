@@ -24,7 +24,10 @@ $factory->state(App\User::class, 'unconfirmed', function () {
 
 $factory->state(App\User::class, 'admin', function () {
     return [
-        'name' => 'corsarstl'
+        'name' => 'corsarstl',
+        'email' => 'corsarstl@gmail.com',
+        'password' => bcrypt('11112222'),
+        'confirmed' => true
     ];
 });
 

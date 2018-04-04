@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('head')
-    <link rel="stylesheet" href="/css/vendor/jquery.atwho.css">
+    <link rel="stylesheet" href="/css/vendor/jquery.atwho.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.11.2/trix.css" />
 @endsection
 
 @section('content')
