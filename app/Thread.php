@@ -75,13 +75,6 @@ class Thread extends Model
         });
     }
 
-    public function toSearchableArray()
-    {
-        $this->channel;
-
-        return $this->toArray();
-    }
-
     public function path()
     {
         return "/threads/{$this->channel->slug}/{$this->slug}";
@@ -177,6 +170,13 @@ class Thread extends Model
         $this->save();
     }
 
+    /**
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return $this->toArray() + ['path' => $this->path(), 'channel' => $this->channel];
+    }
 //    public function visits()
 //    {
 //        return new Visits($this);

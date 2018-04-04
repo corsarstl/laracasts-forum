@@ -29,6 +29,7 @@
         .flex { flex: 1; }
         .mr-1 { margin-right: 1em; }
         .ml-a { margin-left: auto; }
+        span.ais-highlight em { background: yellow }
         [v-cloak] { display: none; }
     </style>
 
