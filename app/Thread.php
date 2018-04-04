@@ -75,6 +75,13 @@ class Thread extends Model
         });
     }
 
+    public function toSearchableArray()
+    {
+        $this->channel;
+
+        return $this->toArray();
+    }
+
     public function path()
     {
         return "/threads/{$this->channel->slug}/{$this->slug}";
