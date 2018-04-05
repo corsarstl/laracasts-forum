@@ -6,7 +6,6 @@ use App\{
     Channel, Rules\Recaptcha, Thread, Trending
 };
 use App\Filters\ThreadFilters;
-use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
 {
@@ -32,7 +31,7 @@ class ThreadsController extends Controller
         }
 
         return view('threads.index', [
-            'threads' => $threads,
+            'threads'  => $threads,
             'trending' => $trending->get()
         ]);
     }
@@ -51,17 +50,17 @@ class ThreadsController extends Controller
     public function store(Recaptcha $recaptcha)
     {
         request()->validate([
-            'title' => 'required|spamfree',
-            'body' => 'required|spamfree',
-            'channel_id' => 'required|exists:channels,id',
+            'title'                => 'required|spamfree',
+            'body'                 => 'required|spamfree',
+            'channel_id'           => 'required|exists:channels,id',
             'g-recaptcha-response' => ['required', $recaptcha]
         ]);
 
         $thread = Thread::create([
-            'user_id' => auth()->id(),
+            'user_id'    => auth()->id(),
             'channel_id' => request('channel_id'),
-            'title' => request('title'),
-            'body' => request('body')
+            'title'      => request('title'),
+            'body'       => request('body')
         ]);
 
         if (request()->wantsJson()) {
@@ -101,7 +100,7 @@ class ThreadsController extends Controller
 
         $thread->update(request()->validate([
             'title' => 'required|spamfree',
-            'body' => 'required|spamfree'
+            'body'  => 'required|spamfree'
         ]));
 
         return $thread;

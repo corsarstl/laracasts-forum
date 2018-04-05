@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.40 on 2018-04-03 13:53:23.
+ * Generated for Laravel 5.5.40 on 2018-04-05 07:17:48.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -12867,6 +12867,68 @@ namespace Barryvdh\Debugbar {
  
 }
 
+namespace Stevebauman\Purify\Facades { 
+
+    class Purify {
+        
+        /**
+         * Cleans the specified input.
+         * 
+         * If a configuration array is given, it **will not**
+         * merge your current configuration.
+         *
+         * @param array|string $input
+         * @param array|null $config
+         * @return array|string 
+         * @static 
+         */ 
+        public static function clean($input, $config = null)
+        {
+            return \Stevebauman\Purify\Purify::clean($input, $config);
+        }
+        
+        /**
+         * Sets the current purifier to
+         * the specified purifier object.
+         *
+         * @param \HTMLPurifier $purifier
+         * @return $this 
+         * @static 
+         */ 
+        public static function setPurifier($purifier)
+        {
+            return \Stevebauman\Purify\Purify::setPurifier($purifier);
+        }
+        
+        /**
+         * Returns the HTML purifier object.
+         *
+         * @return \HTMLPurifier 
+         * @static 
+         */ 
+        public static function getPurifier()
+        {
+            return \Stevebauman\Purify\Purify::getPurifier();
+        }
+        
+        /**
+         * Returns the configuration settings for HTML Purifier.
+         * 
+         * If no configuration settings are retrieved, a default
+         * configuration schema is returned.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getSettings()
+        {
+            return \Stevebauman\Purify\Purify::getSettings();
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -15009,6 +15071,8 @@ namespace  {
     class View extends \Illuminate\Support\Facades\View {}
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
+
+    class Purify extends \Stevebauman\Purify\Facades\Purify {}
  
 }
 

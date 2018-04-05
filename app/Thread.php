@@ -5,6 +5,7 @@ namespace App;
 use App\Events\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use Stevebauman\Purify\Facades\Purify;
 
 /**
  * App\Thread
@@ -75,16 +76,6 @@ class Thread extends Model
         });
     }
 
-    public function path()
-    {
-        return "/threads/{$this->channel->slug}/{$this->slug}";
-    }
-
-    public function replies()
-    {
-        return $this->hasMany(Reply::class);
-    }
-
     public function creator()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -104,6 +95,11 @@ class Thread extends Model
         return $reply;
     }
 
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
@@ -116,22 +112,22 @@ class Thread extends Model
     public function subscribe($userId = null)
     {
         $this->subscriptions()->create([
-            'user_id' => $userId ? : auth()->id()
+            'user_id' => $userId ?: auth()->id()
         ]);
 
         return $this;
     }
 
-    public function unsubscribe($userId = null)
-    {
-        $this->subscriptions()
-            ->where('user_id', $userId ? : auth()->id())
-            ->delete();
-    }
-
     public function subscriptions()
     {
         return $this->hasMany(ThreadSubscription::class);
+    }
+
+    public function unsubscribe($userId = null)
+    {
+        $this->subscriptions()
+            ->where('user_id', $userId ?: auth()->id())
+            ->delete();
     }
 
     public function getIsSubscribedToAttribute()
@@ -144,6 +140,7 @@ class Thread extends Model
     public function hasUpdatesFor(User $user)
     {
         $key = $user->visitedThreadCacheKey($this);
+
 //        $key = sprintf("users.%s.visits.%s", auth()->id(), $this->id);
 
         return $this->updated_at > cache($key);
@@ -176,6 +173,16 @@ class Thread extends Model
     public function toSearchableArray()
     {
         return $this->toArray() + ['path' => $this->path(), 'channel' => $this->channel];
+    }
+
+    public function path()
+    {
+        return "/threads/{$this->channel->slug}/{$this->slug}";
+    }
+
+    public function getBodyAttribute($body)
+    {
+        return Purify::clean($body);
     }
 //    public function visits()
 //    {

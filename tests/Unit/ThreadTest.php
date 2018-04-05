@@ -131,6 +131,14 @@ class ThreadTest extends TestCase
             $this->assertFalse($thread->hasUpdatesFor($user));
         });
     }
+    
+    /** @test */
+    public function its_body_is_sanitized_automatically()
+    {
+        $thread = make('App\Thread', ['body' => '<script>alert("alert")</script><p>text</p>']);
+
+        $this->assertEquals("<p>text</p>", $thread->body);
+    }
 
 //    /** @test */
 //    public function it_records_each_visit()
